@@ -1,27 +1,50 @@
-
-
-
-
 class App extends React.Component { 
   constructor(props) {
     super(props);
     this.state = {
       videos: window.exampleVideoData,
-      currentVideo: window.exampleVideoData[1]
+      currentVideo: window.exampleVideoData[0],
+      currentSearch: 'test'
     };
   }  
  
-  clickHandler () {
-    console.log('CLICKED');
+  clickHandler (info) {
+    this.setState({currentVideo: info});
   }
 
+  changeHandler(e) {
+    this.setState({currentSearch: e.target.value});
+  }
+
+  searchClickHandler() {
+    var fn = (info) => { this.setState({videos: info.items, currentVideo: info.items[0]}); };
+    // var fn = function(info) { this.setState({videos: info.items, currentVideo: info.items[0]}); }.bind(this);
+    console.log('CURRENT SEARCH STATE IS = ', this.state.currentSearch);
+    console.log(window.searchYouTube(
+      //OPTIONS OBJECT
+      {
+        q: this.state.currentSearch,
+        maxResults: 5,
+        key: window.YOUTUBE_API_KEY,
+        videoEmbeddable: true,
+        part: 'snippet',
+        type: 'video'
+      },
+      // function(e) {
+      //   console.log(e, "the event");
+      // });
+      //CALLBACK
+      fn
+  ));
+
+  }
 
   render() {
     return (
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <Search />
+            <Search ourOnChange={this.changeHandler.bind(this)} ourSearchClick={this.searchClickHandler.bind(this)}/>
           </div>
         </nav>
         <div className="row">
