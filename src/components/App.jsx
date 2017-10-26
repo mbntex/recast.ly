@@ -6,11 +6,14 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      videos: window.exampleVideoData
+      videos: window.exampleVideoData,
+      currentVideo: window.exampleVideoData[1]
     };
   }  
 
-
+  clickHandler () {
+    console.log('CLICKED');
+  }
 
 
   render() {
@@ -23,10 +26,10 @@ class App extends React.Component {
         </nav>
         <div className="row">
           <div className="col-md-7">
-            <VideoPlayer />
+            <VideoPlayer playerData={this.state.currentVideo}/>
           </div>
           <div className="col-md-5">
-            <VideoList videoData={this.state.videos} test={'string'}/>
+            <VideoList videoData={this.state.videos} titleClick={this.clickHandler.bind(this)}/>
           </div>
         </div>
       </div>   
