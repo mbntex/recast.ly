@@ -9,7 +9,7 @@ var VideoList = (props) => (
   </div>    
 );
 
-
+ 
   /*<div className="video-list">
     <div><h5><em>videoListEntry</em> {props.videoData[0].snippet.channelTitle}</h5></div>
     <div><h5><em>videoListEntry</em> Hello </h5></div>

@@ -10,7 +10,7 @@ class App extends React.Component {
       currentVideo: window.exampleVideoData[1]
     };
   }  
-
+ 
   clickHandler () {
     console.log('CLICKED');
   }
