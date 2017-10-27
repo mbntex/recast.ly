@@ -6,6 +6,8 @@ class App extends React.Component {
       currentVideo: window.exampleVideoData[0],
       currentSearch: 'test'
     };
+    //BINDING OPTION 2
+    //this.clickHandler = this.clickHandler.bind(this);
   }  
  
   clickHandler (info) {
